@@ -89,11 +89,13 @@ if ($distro -eq "rhel" -or $distro -eq "centos") {
 if ($distro -eq "ubuntu") {
     $fileExtension = "deb"
 }
-if (Test-Path $localPath\*.$fileExtension) {
+if (Test-Path $localPath) {
     $files = Get-ChildItem $localPath -Filter *.${fileExtension}
 }
 else {
     Write-Output "Error: $fileExtension files are not present! $test" `
+    Write-Output "Error: deb path is $localPath" `
+    Write-Output "Error: pwd is $PWD" `
         | Tee-Object -Append -file $summaryLog
     return $false
 }

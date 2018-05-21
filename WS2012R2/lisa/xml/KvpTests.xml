@@ -18,8 +18,12 @@
 
 <config>
     <global>
-       <logfileRootDir>TestResults</logfileRootDir>
+        <logfileRootDir>TestResults</logfileRootDir>
         <defaultSnapshot>ICABase</defaultSnapshot>
+        <LisaInitScript>
+            <file>.\setupScripts\CreateVMs.ps1</file>
+        </LisaInitScript>
+	<imageStoreDir>\\unc\path</imageStoreDir>
         <email>
             <recipients>
                 <to>myboss@mycompany.com</to>
@@ -210,13 +214,21 @@
     </testCases>
 
     <VMs>        
-	    <vm>
+	<vm>
             <hvServer>localhost</hvServer>
             <vmName>VM_NAME</vmName>
             <os>Linux</os>
             <ipv4></ipv4>
-            <sshKey>linux_id_rsa.ppk</sshKey>
+            <sshKey>rhel5_id_rsa.ppk</sshKey>
             <suite>KVP</suite>
+            <hardware>
+                <create>true</create>
+                <numCPUs>4</numCPUs>
+                <memSize>2048</memSize>
+                <disableDiff>True</disableDiff>
+                <generation>1</generation>
+                <nic>VMBus,External</nic>
+            </hardware>
         </vm>
     </VMs>
 
